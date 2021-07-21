@@ -16,15 +16,18 @@ CREATE TABLE role (
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(4,2) NOT NULL,
     department_id INT,
+    is_manager BOOLEAN DEFAULT 0,
     PRIMARY KEY (id)
 );
 
+INSERT INTO role (title, salary, department_id, is_manager)
+VALUES("Sales Manager", 22.50, 1, 1),
+("Head Marketer", 30.26, 2, 1),
+("HR Manager", 38.39, 3, 1);
+
 INSERT INTO role (title, salary, department_id)
-VALUES("Sales Manager", 22.50, 1),
-("Salesman", 18.25, 1),
-("Head Marketer", 30.26, 2),
+VALUES("Salesman", 18.25, 1),
 ("Marketeer", 21.26, 2),
-("HR Manager", 38.39, 3),
 ("HR Generalist ", 29.42, 3);
 
 CREATE TABLE employee (
@@ -38,10 +41,10 @@ CREATE TABLE employee (
 
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES("Steve", "Craftsman", 1),
-("Carl", "Smithers", 3),
-("Bob", "Parr", 5);
+("Carl", "Smithers", 2),
+("Bob", "Parr", 3);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES("Alex", "Bowson", 2, 1),
-("Turd", "Ferguson", 4, 2),
-("Duke", "Nukem", 6, 3);
+VALUES("Alex", "Bowson", 2, 4),
+("Turd", "Ferguson", 4, 5),
+("Duke", "Nukem", 6, 6);
