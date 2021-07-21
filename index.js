@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 const config = require('./config');
 const inquirer = require('inquirer');
-const subMenus = require('./menus/sub')
+const menus = require('./menus/sub')
 
 // Connect to the database
 const connection = mysql.createConnection({
@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
 connection.connect(async (err) => {
     if (err) throw err;
     console.log('Welcome to the employee database!');
-    // and load the main menu
+    // Load the main menu
     mainMenu();
 });
 
@@ -40,13 +40,13 @@ const mainMenu = async () => {
     // Based on the menu selection, run a function
     switch(selection) {
         case 'Manage departments':
-            dptManager();
+            subMenu('department');
             break;
         case 'Manage roles':
-            roleManager();
+            subMenu('role');
             break;
         case 'Manage employees':
-            empManager();
+            subMenu('employee');
             break;
         case 'Exit':
             console.log('Bye');
@@ -55,4 +55,37 @@ const mainMenu = async () => {
     }
 }
 
-const dptManager
+const subMenu = async (string) => {
+    // Prompt the user for another answer
+    const {selection} = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'selection',
+            message: `What would to do to the ${string}s?`,
+            choices: [
+                `List all ${string}s`,
+                `Add a new ${string}`,
+                `Edit an existing ${string}`,
+                `Delete a ${string}`,
+                `Go Back`
+            ]
+        }
+    ]);
+    // Run a function based on the selection
+    switch(selection) {
+        case `List all ${string}s`:
+            listAll(string);
+            break;
+        case `Add a new ${string}`:
+            addNew(string);
+            break;
+        case `Edit an existing ${string}`:
+            editExisting(string);
+            break;
+        case `Delete a ${string}`:
+            deleteExisting(string);
+        case `Go Back`:
+            mainMenu();
+            return;
+    }
+}
