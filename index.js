@@ -40,6 +40,7 @@ const mainMenu = async () => {
     // Based on the menu selection, run a function
     switch(selection) {
         case 'Manage departments':
+            // The subMenu function will prompt the user again for a more specific answer
             subMenu('department');
             break;
         case 'Manage roles':
@@ -54,7 +55,7 @@ const mainMenu = async () => {
             break;
     }
 }
-
+// Define the submenu function
 const subMenu = async (string) => {
     // Prompt the user for another answer
     const {selection} = await inquirer.prompt([
