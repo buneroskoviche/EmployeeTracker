@@ -9,21 +9,15 @@ module.exports = {
                 // Find all data in a category
                 const dptData = await Department.findAll({raw: true});
                 // Console log the data values
-                dptData.forEach(entry => {
-                    console.log(entry);
-                });
+                dptData.forEach(entry => console.log(entry));
                 break;
             case 'role':
                 const roleData = await Role.findAll({raw: true});
-                roleData.forEach(entry => {
-                    console.log(entry);
-                });
+                roleData.forEach(entry => console.log(entry));
                 break;
             case 'employee':
                 const empData = await Employee.findAll({raw: true});
-                empData.forEach(entry => {
-                    console.log(entry);
-                });
+                empData.forEach(entry => console.log(entry));
                 break;
         }
     }
