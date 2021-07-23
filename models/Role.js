@@ -19,10 +19,6 @@ Role.init(
             type: DataTypes.DECIMAL(4,2),
             allowNull: false,
         },
-        is_manager: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: 0,
-        },
         department_id: {
             type: DataTypes.INTEGER,
             references: {

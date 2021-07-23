@@ -27,12 +27,9 @@ Employee.init(
                 key: 'id',
             },
         },
-        manager_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'employee',
-                key: 'id',
-            }
+        manager: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     },
     {

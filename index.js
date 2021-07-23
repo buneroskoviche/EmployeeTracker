@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 const sequelize = require('./config/connection');
 const {Department, Role, Employee} = require('./models');
-const {listAll, addNew} = require('./routes');
+const {listAll, addNew} = require('./queries');
 
 // Define the main menu function
 const mainMenu = async () => {
@@ -51,7 +51,7 @@ const subMenu = async (category) => {
                 `Add new`,
                 `Edit existing`,
                 `Delete existing`,
-                `Go Back`,
+                `Back to the main menu`,
                 `Exit`
             ]
         }
@@ -69,7 +69,7 @@ const subMenu = async (category) => {
             break;
         case `Delete existing`:
             await deleteExisting(category);
-        case `Go Back`:
+        case `Back to the main menu`:
             mainMenu();
             return;
         default: 
@@ -83,6 +83,6 @@ const subMenu = async (category) => {
 
 // Connect to the database and start the main menu
 console.log('Welcome to the employee database!');
-sequelize.sync({force: false}).then(() =>{
+sequelize.sync({force: false}).then(async() =>{
     mainMenu();
 });

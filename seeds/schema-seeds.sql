@@ -35,7 +35,7 @@ CREATE TABLE employee (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
-    manager_id INT,
+    manager VARCHAR(61),
     PRIMARY KEY (id)
 );
 
@@ -44,7 +44,7 @@ VALUES("Steve", "Craftsman", 1),
 ("Carl", "Smithers", 2),
 ("Bob", "Parr", 3);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES("Alex", "Bowson", 2, 1),
-("Turd", "Ferguson", 4, 2),
-("Duke", "Nukem", 6, 3);
+INSERT INTO employee (first_name, last_name, role_id, manager)
+VALUES("Alex", "Bowson", 2, "Steve Craftsman"),
+("Turd", "Ferguson", 4, "Carl Smithers"),
+("Duke", "Nukem", 6, "Bob Parr");
