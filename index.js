@@ -1,7 +1,7 @@
 // Call dependencies
 const inquirer = require('inquirer');
 const sequelize = require('./config/connection');
-const {Department, Role, Employee} = require
+const {Department, Role, Employee} = require('./models');
 
 // Define the main menu function
 const mainMenu = async () => {
@@ -38,35 +38,35 @@ const mainMenu = async () => {
     }
 }
 // Define the submenu function
-const subMenu = async (string) => {
+const subMenu = async (category) => {
     // Prompt the user for another answer
     const {selection} = await inquirer.prompt([
         {
             type: 'list',
             name: 'selection',
-            message: `What would to do to the ${string}s?`,
+            message: `What would to do to the ${category}s?`,
             choices: [
-                `List all ${string}s`,
-                `Add a new ${string}`,
-                `Edit an existing ${string}`,
-                `Delete a ${string}`,
+                `List all ${category}s`,
+                `Add a new ${category}`,
+                `Edit an existing ${category}`,
+                `Delete a ${category}`,
                 `Go Back`
             ]
         }
     ]);
     // Run a function based on the selection
     switch(selection) {
-        case `List all ${string}s`:
-            listAll(string);
+        case `List all ${category}s`:
+            listAll(category);
             break;
-        case `Add a new ${string}`:
-            addNew(string);
+        case `Add a new ${category}`:
+            addNew(category);
             break;
-        case `Edit an existing ${string}`:
-            editExisting(string);
+        case `Edit an existing ${category}`:
+            editExisting(category);
             break;
-        case `Delete a ${string}`:
-            deleteExisting(string);
+        case `Delete a ${category}`:
+            deleteExisting(category);
         case `Go Back`:
             mainMenu();
             return;
@@ -74,14 +74,32 @@ const subMenu = async (string) => {
 }
 
 // The listAll func will retreive all data from the data base in a certain category
-const listAll = async (string) => {
-    switch (string) {
+const listAll = async (category) => {
+    // Use a switch to determine the category
+    switch (category) {
         case 'department':
-            const dptData = await Department
+            // Find all data in a category
+            const dptData = await Department.findAll();
+            // Console log the data values
+            dptData.forEach(entry => {
+                console.log(entry.dataValues);
+            });
+            // Go back to the sub menu
+            subMenu(category);
             break;
         case 'role':
+            const roleData = await Role.findAll();
+            roleData.forEach(entry => {
+                console.log(entry.dataValues);
+            });
+            subMenu(category);
             break;
         case 'employee':
+            const empData = await Employee.findAll();
+            empData.forEach(entry => {
+                console.log(entry.dataValues);
+            });
+            subMenu(category);
             break;
     }
 }
