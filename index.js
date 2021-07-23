@@ -1,8 +1,7 @@
 // Call dependencies
 const inquirer = require('inquirer');
 const sequelize = require('./config/connection');
-const {Department, Role, Employee} = require('./models');
-const {listAll, addNew} = require('./queries');
+const {listAll, addNew, deleteExisting} = require('./queries');
 
 // Define the main menu function
 const mainMenu = async () => {
@@ -69,6 +68,7 @@ const subMenu = async (category) => {
             break;
         case `Delete existing`:
             await deleteExisting(category);
+            break;
         case `Back to the main menu`:
             mainMenu();
             return;
