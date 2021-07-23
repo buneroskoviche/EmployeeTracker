@@ -1,5 +1,5 @@
 const {Department, Role, Employee} = require('../models');
-const {listChoice} = require('./listChoice');
+const {listChoice} = require('./prompts/listChoice');
 
 module.exports = {
     // The listAll func will retreive all data from the data base in a certain category and log it

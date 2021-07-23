@@ -1,3 +1,3 @@
 const {Department, Role, Employee} = require('../models');
 const inquirer = require('inquirer');
-const {listChoice} = require('./listChoice');
+const {listChoice} = require('./prompts/listChoice');
