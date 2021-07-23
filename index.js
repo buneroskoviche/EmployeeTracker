@@ -1,25 +1,7 @@
 // Call dependencies
-const mysql = require('mysql');
-const config = require('./config');
 const inquirer = require('inquirer');
-const menus = require('./menus/sub')
-
-// Connect to the database
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: config.username,
-    password: config.password,
-    database: 'employees_db',
-});
-
-// Connect to the db on startup
-connection.connect(async (err) => {
-    if (err) throw err;
-    console.log('Welcome to the employee database!');
-    // Load the main menu
-    mainMenu();
-});
+const sequelize = require('./config/connection');
+const {Department, Role, Employee} = require
 
 // Define the main menu function
 const mainMenu = async () => {
@@ -51,7 +33,7 @@ const mainMenu = async () => {
             break;
         case 'Exit':
             console.log('Bye');
-            connection.end();
+            sequelize.close();
             break;
     }
 }
@@ -90,3 +72,22 @@ const subMenu = async (string) => {
             return;
     }
 }
+
+// The listAll func will retreive all data from the data base in a certain category
+const listAll = async (string) => {
+    switch (string) {
+        case 'department':
+            const dptData = await Department
+            break;
+        case 'role':
+            break;
+        case 'employee':
+            break;
+    }
+}
+
+// Connect to the database and start the main menu
+console.log('Welcome to the employee database!');
+sequelize.sync({force: false}).then(() =>{
+    mainMenu();
+});

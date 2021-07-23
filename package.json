@@ -6,11 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buneroskoviche/EmployeeTracker.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buneroskoviche/EmployeeTracker/issues"
+  },
+  "homepage": "https://github.com/buneroskoviche/EmployeeTracker#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "inquirer": "^8.1.2",
-    "mysql": "^2.18.1"
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.5"
   }
 }
