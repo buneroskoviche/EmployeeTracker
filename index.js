@@ -44,36 +44,41 @@ const subMenu = async (category) => {
         {
             type: 'list',
             name: 'selection',
-            message: `What would to do to the ${category}s?`,
+            message: `In ${category}s:`,
             choices: [
-                `List all ${category}s`,
-                `Add a new ${category}`,
-                `Edit an existing ${category}`,
-                `Delete a ${category}`,
-                `Go Back`
+                `List all`,
+                `Add new`,
+                `Edit existing`,
+                `Delete existing`,
+                `Go Back`,
+                `Exit`
             ]
         }
     ]);
-    // Run a function based on the selection
+    // Use a switch to determine the category
     switch(selection) {
-        case `List all ${category}s`:
+        case `List all`:
             listAll(category);
             break;
-        case `Add a new ${category}`:
+        case `Add new`:
             addNew(category);
             break;
-        case `Edit an existing ${category}`:
+        case `Edit existing`:
             editExisting(category);
             break;
-        case `Delete a ${category}`:
+        case `Delete existing`:
             deleteExisting(category);
         case `Go Back`:
             mainMenu();
             return;
+        default: 
+            console.log('Bye');
+            sequelize.close();
+            return;
     }
 }
 
-// The listAll func will retreive all data from the data base in a certain category
+// The listAll func will retreive all data from the data base in a certain category and log it
 const listAll = async (category) => {
     // Use a switch to determine the category
     switch (category) {
