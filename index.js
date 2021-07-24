@@ -1,7 +1,7 @@
 // Call dependencies
 const inquirer = require('inquirer');
 const sequelize = require('./config/connection');
-const {listAll, addNew, deleteExisting} = require('./queries');
+const {listAll, addNew, deleteExisting, editExisting} = require('./queries');
 
 // Define the main menu function
 const mainMenu = async () => {

@@ -24,7 +24,7 @@ module.exports = {
     
         // Extract the id and text from the answer
         const id = answer.split(':')[0];
-        const text = answer.split(':')[1];
+        const text = answer.split(':')[1].trim();
         
         // Return the id number and text in an obj
         return {answer: text, id: id};

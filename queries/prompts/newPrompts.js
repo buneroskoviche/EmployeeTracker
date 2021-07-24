@@ -22,7 +22,7 @@ module.exports = {
             {
                 type: 'input',
                 name: 'title',
-                message: `What do you want to call the new role?`
+                message: `What do you want to call the role?`
             },
             {
                 type: 'input',
