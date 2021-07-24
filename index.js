@@ -12,6 +12,7 @@ const mainMenu = async () => {
             name: 'selection',
             message: 'What would you like to do?',
             choices: [
+                'Quick List',
                 'Manage departments',
                 'Manage roles',
                 'Manage employees',
@@ -21,6 +22,10 @@ const mainMenu = async () => {
     ]);
     // Based on the menu selection, run a function
     switch(selection) {
+        case 'Quick List':
+            await listAll();
+            mainMenu();
+            break;
         case 'Manage departments':
             // The subMenu function will prompt the user again for a more specific answer
             subMenu('department');

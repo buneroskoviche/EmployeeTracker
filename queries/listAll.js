@@ -36,7 +36,19 @@ module.exports = {
                 } 
                 break;
             default:
+                // Default will list all model relations
+                try {
+                    const empData = await Employee.findAll( {
+                        include: [{model: Role, include: [{model: Department}]}]
+                    });
+                    const employees = empData.map(entry => entry.get({plain: true}));
+                    employees.forEach(entry => console.log(entry));
+                } catch (e) {
+                    console.log(e);
+                } 
+                break;
                 
         }
+        return;
     }
 }
