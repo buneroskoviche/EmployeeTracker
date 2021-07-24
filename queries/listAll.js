@@ -6,19 +6,37 @@ module.exports = {
         // Use a switch to determine the category
         switch (category) {
             case 'department':
-                // Find all data in a category
-                const dptData = await Department.findAll({raw: true});
-                // Console log the data values
-                dptData.forEach(entry => console.log(entry));
+                try {
+                    // Find all data in a category
+                    const dptData = await Department.findAll();
+                    // Remove extra fluff from the instances
+                    const departments = dptData.map(entry => entry.get({plain: true}));
+                    // Console log the data values
+                    departments.forEach(entry => console.log(entry));
+                } catch (e) {
+                    console.log(e);
+                }    
                 break;
             case 'role':
-                const roleData = await Role.findAll({raw: true});
-                roleData.forEach(entry => console.log(entry));
+                try {
+                    const roleData = await Role.findAll();
+                    const roles = roleData.map(entry => entry.get({plain: true}));
+                    roles.forEach(entry => console.log(entry));
+                } catch (e) {
+                    console.log(e);
+                } 
                 break;
             case 'employee':
-                const empData = await Employee.findAll({raw: true});
-                empData.forEach(entry => console.log(entry));
+                try {
+                    const empData = await Employee.findAll();
+                    const employees = empData.map(entry => entry.get({plain: true}));
+                    employees.forEach(entry => console.log(entry));
+                } catch (e) {
+                    console.log(e);
+                } 
                 break;
+            default:
+                
         }
     }
 }
