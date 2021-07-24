@@ -65,5 +65,6 @@ module.exports = {
                 console.log(`${empToEdit.answer}'s record updated!`);
                 break;
         }
+        return;
     }
 }

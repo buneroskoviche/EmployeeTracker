@@ -28,5 +28,6 @@ module.exports = {
                 console.log(`${newEmployee} added to the database!`)
                 break;
         }
+        return;
     }
 }
