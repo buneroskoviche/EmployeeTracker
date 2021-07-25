@@ -12,7 +12,7 @@ module.exports = {
                 // Prompt the user to pick a department
                 const dptToEdit = await listChoice(departments, "name");
                 // Prompt the user to give a department name
-                const newDptData = await departmentPrompt();
+                const newDptData = await departmentPrompt(dptToEdit);
                 if(checkMatch(dptToEdit, newDptData)) {
                     break;
                 }

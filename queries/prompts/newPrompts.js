@@ -4,12 +4,13 @@ const {nameCombine, retainExisting} = require('../../config/helpers');
 
 module.exports = {
     // departmentPrompt will define a Department and return it
-    departmentPrompt: async () => {
+    departmentPrompt: async (objToEdit) => {
         const department = await inquirer.prompt([
             {
                 type: 'input',
                 name: 'name',
-                message: `What do you want to call the department?`
+                message: `What do you want to call the department?`,
+                default: retainExisting(objToEdit, 'name')
             }
         ]);
         return department;
