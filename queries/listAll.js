@@ -35,12 +35,20 @@ module.exports = {
                     const table = new Table({
                         head: ['ID', 'Title', 'Salary', 'Department']
                     });
-                    roles.forEach(role => table.push([
-                        role.id, 
-                        role.title, 
-                        '$' + role.salary, 
-                        role.department.name
-                    ]));
+                    roles.forEach(role => {
+                        let dpt;
+                        if(role.department) {
+                            dpt = role.department.name; 
+                        } else {
+                            dpt = '*Unassigned*'
+                        }
+                        table.push([
+                            role.id, 
+                            role.title, 
+                            '$' + role.salary, 
+                            dpt,
+                        ])
+                    });
                     console.log(table.toString());
                 } catch (e) {
                     console.log(e);
@@ -94,8 +102,12 @@ module.exports = {
                         let salary;
                         if(entry.role) {
                             title = entry.role.title;
-                            dpt = entry.role.department.name;
                             salary = '$' + entry.role.salary;
+                            if(entry.role.department) {
+                                dpt = entry.role.department.name;
+                            } else {
+                                dpt = '*Unassigned*';
+                            }
                         } else {
                             title = '*Unassigned*';
                             dpt = '*Unassigned*';
