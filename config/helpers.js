@@ -19,7 +19,7 @@ module.exports = {
         // If statement determines the category based on an existing parameter
         if(obj1.name) {
             // if statements compare all object values
-            if(obj1.name === obj1.name) {
+            if(obj1.name === obj2.name) {
                 console.log(message);
                 return true;
             }
