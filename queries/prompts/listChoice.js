@@ -27,7 +27,6 @@ module.exports = {
 
         // Find the object with the matching id in the array
         let objectToReturn = array.find(entry => entry.id === Number(id));
-        console.log(objectToReturn);
 
         // Return the id number and text in an obj
         return objectToReturn;
