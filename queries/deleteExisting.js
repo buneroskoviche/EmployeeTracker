@@ -49,6 +49,22 @@ module.exports = {
                     }
                     await Employee.destroy({where: {id: toDelete.id}});
                     console.log(`\n${nameCombine(toDelete)} has been deleted.\n `);
+                    // Find all employees with the deleted record as a manager
+                    const managersToRemove = await Employee.findAll({
+                        raw: true,
+                        where: {manager: nameCombine(toDelete)}
+                    });
+                    // Update the records to show no manager
+                    managersToRemove.forEach(async (record) => {
+                        await Employee.update({
+                            manager: null
+                        },
+                        {
+                            where: {
+                                id: record.id
+                            }
+                        });
+                    });
                 } catch (e) {
                     console.log(e)
                 }
