@@ -28,7 +28,7 @@ module.exports = {
                 // Prompt the user to pick a role
                 const roleToEdit = await listChoice(roles, "title");
                 // Prompt user for new data for the role
-                const newRoleData = await rolePrompt();
+                const newRoleData = await rolePrompt(roleToEdit);
                 // Update the role based on matching id
                 await Role.update({
                     title: newRoleData.title,
@@ -49,7 +49,7 @@ module.exports = {
                 // Prompt the user to pick an employee
                 const empToEdit = await listChoice(employees, "first_name", "last_name");
                 // Prompt user for new data for the role
-                const newEmpData = await employeePrompt();
+                const newEmpData = await employeePrompt(empToEdit);
                 // Update employee based on matching id
                 await Employee.update({
                     first_name: newEmpData.first_name,

@@ -6,5 +6,11 @@ module.exports = {
         } else {
             return 'Something went wrong...';
         }
+    },
+    // This function returns a default value for the prompts if editing
+    retainExisting: (object, param) => {
+        if(object) {
+            return object[param];
+        }
     }
 }
