@@ -19,7 +19,7 @@ module.exports = {
             {
                 type: 'confirm',
                 name: 'confirm',
-                message: `Are you sure you want to delete ${toDelete}?`
+                message: `Are you sure you want to delete ${toDelete}? The data can not be recovered.`
             }
         ]);
         if(!confirm) {
