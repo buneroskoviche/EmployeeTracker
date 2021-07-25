@@ -1,4 +1,5 @@
 const {Department, Role, Employee} = require('../models');
+const Table = require('cli-table');
 
 module.exports = {
     // The listAll func will retreive all data from the data base in a certain category and log it
@@ -38,11 +39,23 @@ module.exports = {
             default:
                 // Default will list all model relations
                 try {
-                    const empData = await Employee.findAll( {
+                    // Get all employee data and related items
+                    const roughData = await Employee.findAll( {
                         include: [{model: Role, include: [{model: Department}]}]
                     });
-                    const employees = empData.map(entry => entry.get({plain: true}));
-                    employees.forEach(entry => console.log(entry));
+                    // Break down the data so it is easy to work with
+                    const ezData = roughData.map(entry => entry.get({plain: true}));
+                    // Create a new table
+                    const table = new Table({
+                        head: ['Name', 'Role', 'Deparment']
+                    });
+                    // Insert data into the table
+                    ezData.forEach(entry => table.push([
+                        `${entry.first_name} ${entry.last_name}`,
+                        entry.role.title,
+                        entry.role.department.name
+                    ]));
+                    console.log(table.toString());
                 } catch (e) {
                     console.log(e);
                 } 
