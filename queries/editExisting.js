@@ -1,3 +1,4 @@
+const { nameCombine } = require('../config/helpers');
 const {Department, Role, Employee} = require('../models');
 const {listChoice, departmentPrompt, rolePrompt, employeePrompt} = require('./prompts');
 
@@ -18,7 +19,7 @@ module.exports = {
                         id: dptToEdit.id,
                     }
                 });
-                console.log(`${dptToEdit.answer} updated to ${newDptData.name}!`);
+                console.log(`${dptToEdit.name} updated to ${newDptData.name}!`);
                 break;
 
             case 'role':
@@ -39,7 +40,7 @@ module.exports = {
                         id: roleToEdit.id,
                     }
                 });
-                console.log(`${roleToEdit.answer} position updated!`);
+                console.log(`${roleToEdit.title} position updated!`);
                 break;
 
             case 'employee':
@@ -61,7 +62,7 @@ module.exports = {
                         id: empToEdit.id,
                     }
                 });
-                console.log(`${empToEdit.answer}'s record updated!`);
+                console.log(`${nameCombine(empToEdit)}'s record updated!`);
                 break;
         }
     }

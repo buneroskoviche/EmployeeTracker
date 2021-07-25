@@ -1,3 +1,4 @@
+const { nameCombine } = require('../config/helpers');
 const {Department, Role, Employee} = require('../models');
 const {listChoice} = require('./prompts/listChoice');
 
@@ -14,7 +15,7 @@ module.exports = {
                     const toDelete = await listChoice(departments, "name");
                     // Delete the data
                     await Department.destroy({where: {id: toDelete.id}});
-                    console.log(`${toDelete.answer} has been deleted.`);
+                    console.log(`${toDelete.name} has been deleted.`);
                 } catch (e) {
                     console.log(e)
                 }
@@ -27,7 +28,7 @@ module.exports = {
                     const toDelete = await listChoice(roles, "title");
                     // Delete the data
                     await Role.destroy({where: {id: toDelete.id}});
-                    console.log(`${toDelete.answer} has been deleted.`);
+                    console.log(`${toDelete.title} has been deleted.`);
                 } catch (e) {
                     console.log(e)
                 }
@@ -40,7 +41,7 @@ module.exports = {
                     const toDelete = await listChoice(employees, "first_name", "last_name");
                     // Delete the data
                     await Employee.destroy({where: {id: toDelete.id}});
-                    console.log(`${toDelete.answer} has been deleted.`);
+                    console.log(`${nameCombine(toDelete)} has been deleted.`);
                 } catch (e) {
                     console.log(e)
                 }
