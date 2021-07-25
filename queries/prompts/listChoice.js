@@ -22,11 +22,14 @@ module.exports = {
             }
         ]);
     
-        // Extract the id and text from the answer
+        // Extract the id from the answer
         const id = answer.split(':')[0];
-        const text = answer.split(':')[1].trim();
-        
+
+        // Find the object with the matching id in the array
+        let objectToReturn = array.find(entry => entry.id === Number(id));
+        console.log(objectToReturn);
+
         // Return the id number and text in an obj
-        return {answer: text, id: id};
+        return objectToReturn;
     }
 }
