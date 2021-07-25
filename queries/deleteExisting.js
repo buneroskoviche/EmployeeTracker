@@ -1,6 +1,6 @@
 const { nameCombine } = require('../config/helpers');
 const {Department, Role, Employee} = require('../models');
-const {listChoice} = require('./prompts/listChoice');
+const {listChoice, confirmDelete} = require('./prompts');
 
 module.exports = {
     // The listAll func will retreive all data from the data base in a certain category and log it
@@ -13,6 +13,10 @@ module.exports = {
                     const departments = await Department.findAll({raw: true});
                     // Prompt the user to choose which to delete
                     const toDelete = await listChoice(departments, "name");
+                    // Prompt the user to confirm the deletion
+                    if(!await confirmDelete(toDelete)) {
+                        break;
+                    }
                     // Delete the data
                     await Department.destroy({where: {id: toDelete.id}});
                     console.log(`${toDelete.name} has been deleted.`);
@@ -26,6 +30,9 @@ module.exports = {
                     const roles = await Role.findAll({raw: true});
                     // Prompt the user to choose which to delete
                     const toDelete = await listChoice(roles, "title");
+                    if(!await confirmDelete(toDelete)) {
+                        break;
+                    }
                     // Delete the data
                     await Role.destroy({where: {id: toDelete.id}});
                     console.log(`${toDelete.title} has been deleted.`);
@@ -35,11 +42,11 @@ module.exports = {
                 break;
             case 'employee':
                 try {
-                    // Get all employees
                     const employees = await Employee.findAll({raw: true});
-                    // Prompt the user to choose which to delete
                     const toDelete = await listChoice(employees, "first_name", "last_name");
-                    // Delete the data
+                    if(!await confirmDelete(toDelete)) {
+                        break;
+                    }
                     await Employee.destroy({where: {id: toDelete.id}});
                     console.log(`${nameCombine(toDelete)} has been deleted.`);
                 } catch (e) {
