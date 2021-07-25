@@ -8,6 +8,7 @@
 * [Usage](#usage)
 * [Contributing](#contributing)
 * [Questions](#questions)
+* [Tutorial](#tutorial)
 
 ## Description
 A command line based application that allows the user to interact with an internal database of related employees, roles, and departments.
@@ -24,4 +25,5 @@ Suggest and offer advice on improvements.
 ## Questions
 Have questions? Feel free to contact me through my [GithHub profile](https://github.com/buneroskoviche).
 
-
+## Tutorial
+Can be found [here](https://youtu.be/EXwhTC02JQo)!
