@@ -60,7 +60,7 @@ module.exports = {
                         employee.id, 
                         employee.first_name,
                         employee.last_name,
-                        employee.role.title,
+                        employee.role.title || 'Unassigned',
                         employee.manager || 'None'
                     ]));
                     console.log(table.toString());
