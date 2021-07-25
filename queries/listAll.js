@@ -69,19 +69,21 @@ module.exports = {
                 } 
                 break;
             default:
-                // Default will display all basic information
+                // Default will display all information
                 try {
                     const roughData = await Employee.findAll( {
                         include: [{model: Role, include: [{model: Department}]}]
                     });
                     const ezData = roughData.map(entry => entry.get({plain: true}));
                     const table = new Table({
-                        head: ['Name', 'Role', 'Department']
+                        head: ['Name', 'Role', 'Department', 'Salary', 'Manager']
                     });
                     ezData.forEach(entry => table.push([
                         nameCombine(entry),
                         entry.role.title,
-                        entry.role.department.name
+                        entry.role.department.name,
+                        entry.role.salary,
+                        entry.manager || 'None',
                     ]));
                     console.log(table.toString());
                 } catch (e) {
