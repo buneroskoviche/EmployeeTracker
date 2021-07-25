@@ -1,3 +1,4 @@
+const { nameCombine } = require('../config/helpers');
 const {Department, Role, Employee} = require('../models');
 const {departmentPrompt, rolePrompt, employeePrompt} = require('./prompts');
 
@@ -25,7 +26,7 @@ module.exports = {
             case 'employee':
                 const newEmployee = await employeePrompt();
                 await Employee.create(newEmployee);
-                console.log(`${newEmployee} added to the database!`)
+                console.log(`${nameCombine(newEmployee)} added to the database!`)
                 break;
         }
         return;

@@ -1,5 +1,6 @@
 const {Department, Role, Employee} = require('../models');
 const Table = require('cli-table');
+const { nameCombine } = require('../config/helpers');
 
 module.exports = {
     // The listAll func will retreive all data from the data base in a certain category and log it
@@ -78,7 +79,7 @@ module.exports = {
                         head: ['Name', 'Role', 'Department']
                     });
                     ezData.forEach(entry => table.push([
-                        `${entry.first_name} ${entry.last_name}`,
+                        nameCombine(entry),
                         entry.role.title,
                         entry.role.department.name
                     ]));

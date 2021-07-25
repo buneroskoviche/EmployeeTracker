@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const {Department, Role, Employee} = require('../../models');
-const {listChoice} = require('./listChoice');
+const {nameCombine} = require('../../config/helpers');
 
 module.exports = {
     // departmentPrompt will define a Department and return it
@@ -55,7 +55,7 @@ module.exports = {
         // Get data for later use
         const roles = await Role.findAll({raw: true});
         const employees = await Employee.findAll({raw: true});
-        const employeesMap = employees.map(employee => `${employee.first_name} ${employee.last_name}`);
+        const employeesMap = employees.map(employee => nameCombine(employee));
         // Prompt questions
         const employee = await inquirer.prompt([
             {
