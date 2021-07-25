@@ -78,7 +78,7 @@ const subMenu = async (category) => {
             mainMenu();
             return;
         default: 
-            console.log('Bye');
+            console.log('Bye!');
             sequelize.close();
             return;
     }
@@ -87,7 +87,9 @@ const subMenu = async (category) => {
 }
 
 // Connect to the database and start the main menu
-console.log('Welcome to the employee database!');
+console.log('=====================================',
+'\n| Welcome to the employee database! |',
+'\n=====================================');
 sequelize.sync({force: false}).then(async() =>{
     mainMenu();
 });
