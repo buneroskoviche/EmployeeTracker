@@ -56,13 +56,23 @@ module.exports = {
                     const table = new Table({
                         head: ['ID', 'First Name', 'Last Name', 'Role', 'Manager']
                     });
-                    employees.forEach(employee => table.push([
-                        employee.id, 
-                        employee.first_name,
-                        employee.last_name,
-                        employee.role.title || 'Unassigned',
-                        employee.manager || 'None'
-                    ]));
+                    employees.forEach(employee => {
+                        // Deleting a role will remove it from the employee's record
+                        // If statement determines if they have a role assigned before populating the table
+                        let title;
+                        if(employee.role) {
+                            title = employee.role.title;
+                        } else {
+                            title = '*Unassigned*';
+                        }
+                        table.push([
+                            employee.id, 
+                            employee.first_name,
+                            employee.last_name,
+                            title,
+                            employee.manager || 'None'
+                        ]);
+                    });
                     console.log(table.toString());
                 } catch (e) {
                     console.log(e);
@@ -78,13 +88,27 @@ module.exports = {
                     const table = new Table({
                         head: ['Name', 'Role', 'Department', 'Salary', 'Manager']
                     });
-                    ezData.forEach(entry => table.push([
-                        nameCombine(entry),
-                        entry.role.title || 'Unassigned',
-                        entry.role.department.name,
-                        '$' + entry.role.salary,
-                        entry.manager || 'None',
-                    ]));
+                    ezData.forEach(entry => {
+                        let title;
+                        let dpt; 
+                        let salary;
+                        if(entry.role) {
+                            title = entry.role.title;
+                            dpt = entry.role.department.name;
+                            salary = '$' + entry.role.salary;
+                        } else {
+                            title = '*Unassigned*';
+                            dpt = '*Unassigned*';
+                            salary = '*Unassigned*';
+                        }
+                        table.push([
+                            nameCombine(entry),
+                            title,
+                            dpt,
+                            salary,
+                            entry.manager || 'None',
+                        ]);
+                    })
                     console.log(table.toString());
                 } catch (e) {
                     console.log(e);
