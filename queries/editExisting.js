@@ -1,4 +1,4 @@
-const { nameCombine } = require('../config/helpers');
+const { nameCombine, checkMatch } = require('../config/helpers');
 const {Department, Role, Employee} = require('../models');
 const {listChoice, departmentPrompt, rolePrompt, employeePrompt} = require('./prompts');
 
@@ -13,6 +13,9 @@ module.exports = {
                 const dptToEdit = await listChoice(departments, "name");
                 // Prompt the user to give a department name
                 const newDptData = await departmentPrompt();
+                if(checkMatch(dptToEdit, newDptData)) {
+                    break;
+                }
                 // Update the department record
                 await Department.update({name: newDptData.name}, {
                     where: {
@@ -29,6 +32,9 @@ module.exports = {
                 const roleToEdit = await listChoice(roles, "title");
                 // Prompt user for new data for the role
                 const newRoleData = await rolePrompt(roleToEdit);
+                if(checkMatch(roleToEdit, newRoleData)) {
+                    break;
+                };
                 // Update the role based on matching id
                 await Role.update({
                     title: newRoleData.title,
@@ -50,6 +56,10 @@ module.exports = {
                 const empToEdit = await listChoice(employees, "first_name", "last_name");
                 // Prompt user for new data for the role
                 const newEmpData = await employeePrompt(empToEdit);
+                // If no changes were made, exit without updating the database
+                if(checkMatch(empToEdit, newEmpData)) {
+                    break;
+                };
                 // Update employee based on matching id
                 await Employee.update({
                     first_name: newEmpData.first_name,
