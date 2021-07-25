@@ -22,7 +22,7 @@ module.exports = {
                         id: dptToEdit.id,
                     }
                 });
-                console.log(`${dptToEdit.name} updated to ${newDptData.name}!`);
+                console.log(`\n${dptToEdit.name} updated to ${newDptData.name}!\n `);
                 break;
 
             case 'role':
@@ -46,7 +46,7 @@ module.exports = {
                         id: roleToEdit.id,
                     }
                 });
-                console.log(`${roleToEdit.title} position updated!`);
+                console.log(`\n${roleToEdit.title} position updated!\n `);
                 break;
 
             case 'employee':
@@ -72,7 +72,7 @@ module.exports = {
                         id: empToEdit.id,
                     }
                 });
-                console.log(`${nameCombine(empToEdit)}'s record updated!`);
+                console.log(`\n${nameCombine(empToEdit)}'s record updated!\n `);
                 break;
         }
     }

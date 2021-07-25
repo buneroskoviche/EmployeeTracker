@@ -12,7 +12,7 @@ module.exports = {
                 const newDpt = await departmentPrompt();
                 // Create the new department record
                 await Department.create(newDpt);
-                console.log(`${newDpt.name} department created!`);
+                console.log(`\n${newDpt.name} department created!\n `);
                 break;
 
             case 'role':
@@ -20,13 +20,13 @@ module.exports = {
                 const newRole = await rolePrompt();
                 // Add the new role to the database
                 await Role.create(newRole);
-                console.log(`${newRole.title} position created!`)
+                console.log(`\n${newRole.title} position created!\n `)
                 break;
 
             case 'employee':
                 const newEmployee = await employeePrompt();
                 await Employee.create(newEmployee);
-                console.log(`${nameCombine(newEmployee)} added to the database!`)
+                console.log(`\n${nameCombine(newEmployee)} added to the database!\n `)
                 break;
         }
         return;

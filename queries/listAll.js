@@ -40,14 +40,14 @@ module.exports = {
                         if(role.department) {
                             dpt = role.department.name; 
                         } else {
-                            dpt = '*Unassigned*'
+                            dpt = '*Unassigned*';
                         }
                         table.push([
                             role.id, 
                             role.title, 
                             '$' + role.salary, 
                             dpt,
-                        ])
+                        ]);
                     });
                     console.log(table.toString());
                 } catch (e) {

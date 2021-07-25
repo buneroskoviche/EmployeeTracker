@@ -19,7 +19,7 @@ module.exports = {
                     }
                     // Delete the data
                     await Department.destroy({where: {id: toDelete.id}});
-                    console.log(`${toDelete.name} has been deleted.`);
+                    console.log(`\n${toDelete.name} has been deleted.\n `);
                 } catch (e) {
                     console.log(e)
                 }
@@ -35,7 +35,7 @@ module.exports = {
                     }
                     // Delete the data
                     await Role.destroy({where: {id: toDelete.id}});
-                    console.log(`${toDelete.title} has been deleted.`);
+                    console.log(`\n${toDelete.title} has been deleted.\n `);
                 } catch (e) {
                     console.log(e)
                 }
@@ -48,7 +48,7 @@ module.exports = {
                         break;
                     }
                     await Employee.destroy({where: {id: toDelete.id}});
-                    console.log(`${nameCombine(toDelete)} has been deleted.`);
+                    console.log(`\n${nameCombine(toDelete)} has been deleted.\n `);
                 } catch (e) {
                     console.log(e)
                 }
