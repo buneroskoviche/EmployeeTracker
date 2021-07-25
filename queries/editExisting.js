@@ -49,7 +49,6 @@ module.exports = {
                 const empToEdit = await listChoice(employees, "first_name", "last_name");
                 // Prompt user for new data for the role
                 const newEmpData = await employeePrompt();
-                console.log(empToEdit, newEmpData);
                 // Update employee based on matching id
                 await Employee.update({
                     first_name: newEmpData.first_name,
@@ -65,6 +64,5 @@ module.exports = {
                 console.log(`${empToEdit.answer}'s record updated!`);
                 break;
         }
-        return;
     }
 }
