@@ -80,7 +80,7 @@ module.exports = {
                     });
                     ezData.forEach(entry => table.push([
                         nameCombine(entry),
-                        entry.role.title,
+                        entry.role.title || 'Unassigned',
                         entry.role.department.name,
                         '$' + entry.role.salary,
                         entry.manager || 'None',
