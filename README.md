@@ -1,5 +1,6 @@
 # Employee Tracker
 
+![screenshot](https://user-images.githubusercontent.com/80650523/126907745-098b852d-4871-41ff-a028-a82a6747c603.png)
 
 ## Table of Contents
 * [Description](#description)
