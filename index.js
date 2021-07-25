@@ -37,7 +37,7 @@ const mainMenu = async () => {
             subMenu('employee');
             break;
         case 'Exit':
-            console.log('Bye');
+            console.log('Bye!');
             sequelize.close();
             break;
     }
@@ -51,7 +51,7 @@ const subMenu = async (category) => {
             name: 'selection',
             message: `Manage ${category}s:`,
             choices: [
-                `List all`,
+                `Display all ${category}s`,
                 `Add new`,
                 `Edit existing`,
                 `Delete existing`,
@@ -62,7 +62,7 @@ const subMenu = async (category) => {
     ]);
     // Use a switch to determine the category
     switch(selection) {
-        case `List all`:
+        case `Display all ${category}s`:
             await listAll(category);
             break;
         case `Add new`:

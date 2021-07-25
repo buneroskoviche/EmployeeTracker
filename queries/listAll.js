@@ -38,7 +38,7 @@ module.exports = {
                     roles.forEach(role => table.push([
                         role.id, 
                         role.title, 
-                        role.salary, 
+                        '$' + role.salary, 
                         role.department.name
                     ]));
                     console.log(table.toString());
@@ -82,7 +82,7 @@ module.exports = {
                         nameCombine(entry),
                         entry.role.title,
                         entry.role.department.name,
-                        entry.role.salary,
+                        '$' + entry.role.salary,
                         entry.manager || 'None',
                     ]));
                     console.log(table.toString());
